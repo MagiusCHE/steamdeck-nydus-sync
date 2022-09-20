@@ -17,6 +17,7 @@ import WindowControls from './WindowControls';
 import context from '../titlebarContextApi';
 import { WindowContext } from './WindowFrame';
 import './Titlebar.less';
+import mainAPI from '@misc/window/mainAPIContextApi';
 
 type Props = {
   title: string;
@@ -116,7 +117,7 @@ const Titlebar: React.FC<Props> = (props) => {
       if (typeof c[action] === 'function') {
         c[action](value);
       } else {
-        console.log(`action [${action}] is not available in titlebar context`);
+        mainAPI.log('Titlebar',`action [${action}] is not available in titlebar context`);
       }
     }
   }

@@ -2,13 +2,14 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import WindowFrame from '@misc/window/components/WindowFrame';
 import Application from '@components/Application';
+import mainAPI from '@misc/window/mainAPIContextApi';
 
 // Say something
-console.log('[ERWT] : Renderer execution started');
+mainAPI.log('Renderer','execution started');
 
 // Application to Render
 const app = (
-  <WindowFrame title='ERWT Boilerplate' platform='windows'>
+  <WindowFrame title='Nydus' platform='windows'>
     <Application />
   </WindowFrame>
 );

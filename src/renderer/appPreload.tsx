@@ -1,11 +1,11 @@
 import '@misc/window/windowPreload';
 
 // Say something
-console.log('[ERWT] : Preload execution started');
+//console.log('[Nydus]: Preload execution started');
 
 // Get versions
 window.addEventListener('DOMContentLoaded', () => {
-  const app = document.getElementById('app');
+  /*const app = document.getElementById('app');
   const { env } = process;
   const versions: Record<string, unknown> = {};
 
@@ -31,5 +31,5 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Set versions to app data
-  app.setAttribute('data-versions', JSON.stringify(versions));
+  app.setAttribute('data-versions', JSON.stringify(versions));*/
 });

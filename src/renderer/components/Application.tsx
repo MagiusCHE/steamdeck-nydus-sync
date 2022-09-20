@@ -1,3 +1,4 @@
+import mainAPI from '@misc/window/mainAPIContextApi';
 import React, { useEffect, useState } from 'react';
 import './Application.scss';
 import { icons } from './Icons';
@@ -50,7 +51,7 @@ const Application: React.FC = () => {
     <div id='erwt'>
       <div className='header'>
         <div className='main-heading'>
-          <h1 className='themed'>ERWT - Electron Boilerplate</h1>
+          <h1 className='themed'>Nydus - Steam Deck Syncronizer</h1>
         </div>
         <div className='main-teaser'>
           <div>
@@ -62,6 +63,16 @@ const Application: React.FC = () => {
             <br />
             If you think the project is useful enough, just spread the word around!
           </div>
+        </div>
+        <div className='center'>
+          <button
+            onClick={async () => {
+              const ret = await mainAPI.test()
+              mainAPI.log('App',"Received %o", ret)
+            }}
+          >
+
+          </button>
         </div>
         <div className='versions'>
           <div className='item'>
@@ -123,7 +134,7 @@ const Application: React.FC = () => {
               setCounter(counter + 1);
             }}
           >
-            Increment {counter != 0 ? counter : ''} <span>{counter}</span>
+            Increment {counter != 0 ? counter : '2'} <span>{counter}</span>
           </button>
           &nbsp;&nbsp; &nbsp;&nbsp;
           <button
