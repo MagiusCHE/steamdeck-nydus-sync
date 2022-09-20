@@ -1,7 +1,13 @@
 import mainAPI from '@misc/window/mainAPIContextApi';
+
+import { Logger } from '@misc/window/logger';
+const { log, error } = Logger.create('App')
+
+
 import React, { useEffect, useState } from 'react';
 import './Application.scss';
 import { icons } from './Icons';
+
 
 const Application: React.FC = () => {
   const [counter, setCounter] = useState(0);
@@ -67,8 +73,13 @@ const Application: React.FC = () => {
         <div className='center'>
           <button
             onClick={async () => {
-              const ret = await mainAPI.test()
-              mainAPI.log('App',"Received %o", ret)
+              try {
+                log("Send %o", 'test')
+                const ret = await mainAPI.test()
+                log("Received %o", ret)
+              } catch (err) {
+                error("Received error", err)
+              }
             }}
           >
 
@@ -156,3 +167,4 @@ const Application: React.FC = () => {
 };
 
 export default Application;
+

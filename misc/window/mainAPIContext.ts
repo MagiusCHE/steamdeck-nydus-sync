@@ -14,15 +14,15 @@ import debug from 'debug';
 
 import { ipcRenderer } from 'electron';
 
-type AllowegArgumentTypes = (object | string | number)[]
+type AllowedArgumentTypes = (object | string | number)[]
 
 export type MainAPIArguments = {
   method: string,
-  args: AllowegArgumentTypes
+  args: AllowedArgumentTypes
 }
 
 const assemble_args = (...args: unknown[]) => {
-  return args as AllowegArgumentTypes
+  return args as AllowedArgumentTypes
 }
 
 const activeDebugs: {
@@ -52,7 +52,7 @@ const MainAPIContext = {
       activeDebugs[internal_key] = debug(key)
 
       //default is already on stderr
-      //activeDebugs[internal_key].log = console.error.bind(console)
+      activeDebugs[internal_key].log = console.error.bind(console)
 
     }
     activeDebugs[internal_key](format, ...args)
