@@ -11,8 +11,13 @@
  */
 
 import React, { useEffect, useRef } from 'react';
-import Titlebar from './Titlebar';
+//import Titlebar from './Titlebar';
+import Tabs from './Tabs';
+import Panels, { selectPanel } from './Panels';
 import logo from '@assets/images/logo.png';
+
+import { Logger } from '@misc/window/logger';
+const { log, error } = Logger.create('Frame')
 
 type Props = {
   title?: string;
@@ -30,6 +35,7 @@ export const WindowContext = React.createContext<Context>({
 });
 
 const WindowFrame: React.FC<Props> = (props) => {
+
   const itsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,13 +54,12 @@ const WindowFrame: React.FC<Props> = (props) => {
       {/* Reference creator */}
       <div className='start-electron-window' ref={itsRef}></div>
       {/* Window Titlebar */}
-      <Titlebar
-        title={props.title ?? 'Electron Window'}
-        mode='centered-title'
-        icon={logo}
-      />
+      <Tabs activatePanel={selectPanel} />
       {/* Window Content (Application to render) */}
-      <div className='window-content'>{props.children}</div>
+      <div className='window-content'>
+        <Panels />
+        {props.children}
+      </div>
     </WindowContext.Provider>
   );
 };

@@ -88,10 +88,12 @@ button {
   &:hover {
     background: var(--button-hover-bgcolor);
   }
+
   &:active {
     background: var(--button-active-bgcolor);
   }
-  & > span {
+
+  &>span {
     color: var(--button-badge-color);
     background-color: var(--button-badge-bgcolor);
     font-size: 12px;
@@ -118,6 +120,10 @@ button {
   to {
     transform: rotate(360deg);
   }
+}
+
+.window-content{
+  height: 100%;
 }
 
 .main-heading {
@@ -202,7 +208,7 @@ button {
   box-sizing: border-box;
   border-radius: 4px;
 
-  & > * {
+  &>* {
     display: flex;
   }
 
@@ -213,7 +219,7 @@ button {
     opacity: 0.8;
   }
 
-  & > span {
+  &>span {
     color: gray;
     text-align: right;
   }
@@ -228,10 +234,11 @@ button {
   background: var(--erwt-gradient);
 
   .header {
-    padding: 3rem 2rem 0rem 2rem;
+    padding: 2rem 2rem 0rem 2rem;
     max-width: 700px;
     margin: 0 auto;
   }
+
   .footer {
     padding: 2rem;
     background: var(--app-footer-bgColor);
@@ -253,6 +260,7 @@ button {
 
   &-icon {
     min-height: 33px;
+
     img {
       border-radius: 50%;
     }

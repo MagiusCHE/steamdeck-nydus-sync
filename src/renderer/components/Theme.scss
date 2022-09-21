@@ -131,8 +131,20 @@ body:not(.dark-mode) {
     background: #fff;
     box-shadow: 0 2px 4px #00000005;
 
-    & > span {
+    &>span {
       color: #999999;
     }
   }
+
+  .tabs .tab {
+    opacity: 0.7;
+    background: #aaaaaa;
+    color: var(--button-color);
+
+    &.selected {
+      border: 2px solid #dcdcdc;
+      background-color: rgba(248, 248, 248, 0.0901960784);
+    }
+  }
+
 }

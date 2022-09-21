@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import WindowControls from './WindowControls';
 import context from '../titlebarContextApi';
 import { WindowContext } from './WindowFrame';
-import './Titlebar.less';
+import './Titlebar_old.less';
 import mainAPI from '@misc/window/mainAPIContextApi';
 
 type Props = {

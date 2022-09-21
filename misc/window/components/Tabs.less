@@ -1,0 +1,84 @@
+/*
+ * Copyright (c) 2022, Magius(CHE)
+ *
+ * This software is provided "as-is", without any express or implied warranty. In no event
+ * will the authors be held liable for any damages arising from the use of this software.
+ * Read the LICENSE file for more details.
+ *
+ * @author: Magius(CHE) - magiusche@magius.it
+ */
+
+
+//-----------------------------------------
+// Mixins
+//-----------------------------------------
+
+.flex-strech() {
+    display: flex;
+    align-items: stretch;
+}
+
+.flex-align-center() {
+    display: flex;
+    align-items: center;
+}
+
+.tabs {
+    .flex-strech();
+    /*justify-content: stretch;*/
+    position: absolute;
+    width: 100%;
+}
+
+.tabs .tab {
+    transition: All 150ms ease-out;
+    filter: grayscale(0.8);
+    opacity: 0.5;
+    text-transform: uppercase;
+    font-family: var(--app-font-family);
+    background: #191919;
+    color: #d1d1d1;
+    text-align: center;
+    padding: 4px 12px;
+    border-radius: 0;
+    border: 2px solid transparent;
+    flex: 1;
+
+
+    margin: 0;
+    box-sizing: border-box;
+    /*border-radius: 4px;*/
+
+    &:hover,
+    &.selected {
+        filter: unset;
+        opacity: 1 !important;
+    }
+
+    &.selected {
+        border: 2px solid #f8f8f817;
+        background-color: #f8f8f817;
+    }
+
+    &>* {
+        display: flex;
+    }
+
+    &-icon {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin-right: 10px;
+        opacity: 0.8;
+    }
+
+    .icon-lings {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    &>span {
+        /*color: gray;*/
+        text-align: right;
+        font-size: 1.5rem;
+    }
+}

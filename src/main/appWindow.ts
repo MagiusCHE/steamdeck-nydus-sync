@@ -7,6 +7,8 @@ import { registerMainAPIIpc } from '@misc/window/mainAPIIPC';
 declare const APP_WINDOW_WEBPACK_ENTRY: string;
 declare const APP_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
+const production = process.env.NODE_ENV == 'production'
+
 let appWindow: BrowserWindow;
 
 /**
@@ -20,9 +22,9 @@ export function createAppWindow(): BrowserWindow {
     height: 600,
     backgroundColor: '#202020',
     show: false,
-    autoHideMenuBar: true,
-    frame: false,
-    titleBarStyle: 'hidden',
+    autoHideMenuBar: production,
+    frame: true,
+    //titleBarStyle: 'hidden',
     icon: path.resolve('assets/images/appIcon.ico'),
     webPreferences: {
       nodeIntegration: false,
@@ -36,8 +38,18 @@ export function createAppWindow(): BrowserWindow {
   // Load the index.html of the app window.
   appWindow.loadURL(APP_WINDOW_WEBPACK_ENTRY);
 
+  let firstshow = true;
   // Show window when its ready to
-  appWindow.on('ready-to-show', () => appWindow.show());
+  appWindow.on('ready-to-show', () => {
+    if (!firstshow)
+      return
+    appWindow.show()
+    if (!production) {
+      appWindow.maximize();
+      appWindow.webContents.toggleDevTools();
+    }
+    firstshow = false
+  });
 
   // Register Inter Process Communication for main process
   registerMainIPC();
