@@ -26,8 +26,11 @@
 .tabs {
     .flex-strech();
     /*justify-content: stretch;*/
-    position: absolute;
+    position: fixed;
     width: 100%;
+    background-color: var(--app-bgcolor);
+    z-index: 1;
+    box-shadow: 0px 16px 21px 2px var(--app-bgcolor);
 }
 
 .tabs .tab {
@@ -80,5 +83,6 @@
         /*color: gray;*/
         text-align: right;
         font-size: 1.5rem;
+        white-space: nowrap;
     }
 }

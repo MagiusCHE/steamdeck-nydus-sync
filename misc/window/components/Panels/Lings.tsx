@@ -12,39 +12,25 @@
 import mainAPI from '../../mainAPIContextApi';
 
 import React, { createRef } from 'react';
-import { PanelProps, Panel } from './Panel';
+import Panel, { PanelProps } from './Panel';
 
-class Games extends Panel {
-    constructor() {                
-        super('👾 Lings', createRef<HTMLDivElement>())
+class Lings extends Panel {
+    constructor() {
+        super('👾 Lings', 'lings', createRef<HTMLDivElement>())
     }
 
-    public get_element(props: PanelProps) {
+    public override get_element(props: PanelProps) {
+
         return (
-            <div className='panel' ref={this.ref_panel}>
+            <div className='panel' ref={this.ref_panel} key={'panel_' + this.index}>
                 <div className='header'>
                     <div className='main-heading'>
-                        <h1 className='themed'>Nydus: Lings </h1>
+                        <h1 className='themed'>Nydus: {this.log_name}</h1>
                     </div>
                     <div className='main-teaser'>
-                        <div>                            
+                        <div>
                             If you think the project is useful enough, just spread the word around!
                         </div>
-                    </div>
-                    <div className='center'>
-                        <button
-                            onClick={async () => {
-                                try {
-                                    this.log("Send %o", 'test')
-                                    const ret = await mainAPI.test()
-                                    this.log("Received %o", ret)
-                                } catch (err) {
-                                    this.error("Received error", err)
-                                }
-                            }}
-                        >
-
-                        </button>
                     </div>
                 </div>
 
@@ -58,7 +44,7 @@ class Games extends Panel {
     }
 }
 
-export default Games
+export default Lings
 
 
 

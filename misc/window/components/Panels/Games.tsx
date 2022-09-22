@@ -11,18 +11,17 @@
 
 import mainAPI from '../../mainAPIContextApi';
 
-import React, { createRef, RefObject } from 'react';
-import { PanelProps, Panel } from './Panel';
+import React, { createRef } from 'react';
+import Panel, { PanelProps } from './Panel';
 
 class Games extends Panel {
-    constructor() {                
-        super('🎮 Games', createRef<HTMLDivElement>())
-        this.log("Constructed")
+    constructor() {
+        super('🎮 Games', 'games', createRef<HTMLDivElement>())
     }
 
-    public get_element(props: PanelProps) {
+    public override get_element(props: PanelProps) {
         return (
-            <div className='panel' ref={this.ref_panel}>
+            <div className='panel' ref={this.ref_panel} key={'panel_' + this.index}>
                 <div className='header'>
                     <div className='main-heading'>
                         <h1 className='themed'>Nydus: Games </h1>

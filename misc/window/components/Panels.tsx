@@ -17,7 +17,20 @@ import './Panels.less';
 
 import Games from './Panels/Games'
 import Lings from './Panels/Lings'
-import { Panel } from './Panels/Panel';
+import Panel from './Panels/Panel';
+
+interface PanelType {
+    new(...args: unknown[]): Panel
+}
+
+const PanelsInfo: {
+    [key: string]: PanelType
+} = {
+    games: Games,
+    lings: Lings,
+    /*opts: ,
+    info: */
+}
 
 type PanelEntry = {
     //ref?: typeof GamesRef,
@@ -26,18 +39,15 @@ type PanelEntry = {
 
 const panel_entries: {
     [key: string]: PanelEntry
-} = {
-    games: {
-        panel: new Games()
-    },
-    lings: {
-        panel: new Lings()
-    },
-    opts: {
-    },
-    info: {
+} = {}
+
+Object.entries(PanelsInfo).forEach(info => {
+    const panel = new info[1]()
+
+    panel_entries[info[0]] = {
+        panel: panel,        
     }
-}
+})
 
 const selectPanel = (index: string) => {
     Object.entries(panel_entries).forEach((e) => {
@@ -45,18 +55,20 @@ const selectPanel = (index: string) => {
     });
 }
 
+type PanelsProps = Record<string, unknown>
+
 const Panels: React.FC = () => {
     return (
         <div className='panels'>
             {Object.entries(panel_entries).map(panel => {
                 return panel[1].panel?.get_element({})
             })}
-                
+
         </div>
     )
 }
 
 export default Panels
 
-export { selectPanel }
+export { selectPanel, PanelsProps }
 

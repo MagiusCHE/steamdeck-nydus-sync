@@ -8,43 +8,37 @@
  * @author: Magius(CHE) - magiusche@magius.it
  */
 
-
-//Thx to https://www.flaticon.com/
-// <a href="https://www.flaticon.com/free-icons/about" title="about icons">About icons created by Smashicons - Flaticon</a>
-import React, { createRef, useContext, useEffect, useRef, useState } from 'react';
+import React, { createRef } from 'react';
 import './Tabs.less';
 /*type Props = {
     selected?: string
 };*/
-import IconGames from '@assets/icons/video-game.png';
-import IconLings from '@assets/icons/eye.png';
-import IconOpts from '@assets/icons/gear.png';
-import IconInfo from '@assets/icons/about.png';
 
 type TabEntry = {
-    icon: typeof IconGames,
     title: string,
     ref?: React.RefObject<HTMLButtonElement>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    icon?: any
 }
 
 const tab_entries: {
     [key: string]: TabEntry
 } = {
     games: {
-        icon: IconGames,
-        title: 'Games'
+        //icon: IconGames,
+        title: '🎮 Games'
     },
     lings: {
-        icon: IconLings,
-        title: 'Lings'
+        //icon: IconLings,
+        title: '👾 Lings'
     },
     opts: {
-        icon: IconOpts,
-        title: 'Options'
+        //icon: IconOpts,
+        title: '⚙️ Options'
     },
     info: {
-        icon: IconInfo,
-        title: 'Info'
+        //icon: IconInfo,
+        title: '🔗 Info'
     }
 }
 
@@ -77,7 +71,7 @@ const Tabs: React.FC<Props> = (props) => {
                         onClick={(e) => selectTab(entry[0], e)}
                         className={'tab'/* + (props.selected==entry[0] ? ' selected' : '')*/} key={"tab_" + entry[0]}>
                         <span>
-                            <img className='tab-icon' src={entry[1].icon} /> {entry[1].title}
+                            {entry[1].title}
                         </span>
                     </button>
                 )
