@@ -12,7 +12,8 @@
 
 import debug from 'debug';
 
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, shell } from 'electron';
+import React from 'react';
 
 type AllowedArgumentTypes = (object | string | number)[]
 
@@ -61,6 +62,9 @@ const MainAPIContext = {
       args: assemble_args(sender, format, ...args)
     }
     return ipcRenderer.send("api", ipcargs);
+  },
+  open_external(url: string) {
+    shell.openExternal(url)
   },
   async test() {
     const ipcargs: MainAPIArguments = {

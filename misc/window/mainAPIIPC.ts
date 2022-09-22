@@ -23,7 +23,7 @@ class MainAPIIpc extends Loggable {
         };
         ipcMain.handle('api', handler);
         ipcMain.on('api', handler);
-    }    
+    }
     public async test(...args: unknown[]) {
         this.log("invoked TEST with args", args)
         this.log("Home %o", app.getPath('home'))

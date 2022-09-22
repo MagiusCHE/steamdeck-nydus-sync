@@ -10,9 +10,9 @@
 
 import React, { createRef } from 'react';
 import './Tabs.less';
-/*type Props = {
-    selected?: string
-};*/
+
+import { Logger } from '@misc/window/logger';
+const { log, error } = Logger.create('Tabs')
 
 type TabEntry = {
     title: string,
@@ -42,24 +42,34 @@ const tab_entries: {
     }
 }
 
+const selectTab = (index: string, propagate_to_panel = true) => {
+    Object.entries(tab_entries).forEach((e) => {
+        if (e[0] == index)
+            e[1].ref.current.classList.add('selected')
+        else
+            e[1].ref.current.classList.remove('selected')
+
+        if (propagate_to_panel && activatePanel) {
+            activatePanel(index)
+        }
+    });
+}
+
 type Props = {
     activatePanel: (index: string) => void;
 }
+
+let activatePanel: (index: string) => void;
 const Tabs: React.FC<Props> = (props) => {
+
+    activatePanel = props.activatePanel;
     Object.entries(tab_entries).forEach((e) => e[1].ref = createRef<HTMLButtonElement>());
 
-    function selectTab(index: string, e: React.MouseEvent<HTMLButtonElement>) {
+    function on_selectTab(index: string, e: React.MouseEvent<HTMLButtonElement>) {
         e.stopPropagation();
         e.preventDefault();
 
-        Object.entries(tab_entries).forEach((e) => {
-            if (e[0] == index) {
-                e[1].ref.current.classList.add('selected')
-            }
-            else
-                e[1].ref.current.classList.remove('selected')
-        });
-        props.activatePanel(index)
+        selectTab(index)
         //e.currentTarget.classList.add('selected') 
     }
     return (
@@ -68,7 +78,7 @@ const Tabs: React.FC<Props> = (props) => {
                 return (
                     <button
                         ref={entry[1].ref}
-                        onClick={(e) => selectTab(entry[0], e)}
+                        onClick={(e) => on_selectTab(entry[0], e)}
                         className={'tab'/* + (props.selected==entry[0] ? ' selected' : '')*/} key={"tab_" + entry[0]}>
                         <span>
                             {entry[1].title}
@@ -81,4 +91,5 @@ const Tabs: React.FC<Props> = (props) => {
 }
 
 export default Tabs
+export { selectTab }
 

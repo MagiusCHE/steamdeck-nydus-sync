@@ -12,7 +12,7 @@
 
 import React, { useEffect, useRef } from 'react';
 //import Titlebar from './Titlebar';
-import Tabs from './Tabs';
+import Tabs, { selectTab } from './Tabs';
 import Panels, { selectPanel } from './Panels';
 import logo from '@assets/images/logo.png';
 
@@ -47,6 +47,10 @@ const WindowFrame: React.FC<Props> = (props) => {
     if (props.borderColor) {
       parentElement.style.borderColor = props.borderColor;
     }
+
+    log("Select tab invoked on useEffect")
+    selectTab('games')
+
   }, []);
 
   return (

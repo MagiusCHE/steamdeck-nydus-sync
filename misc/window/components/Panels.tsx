@@ -17,6 +17,8 @@ import './Panels.less';
 
 import Games from './Panels/Games'
 import Lings from './Panels/Lings'
+import Options from './Panels/Options'
+import Info from './Panels/Info'
 import Panel from './Panels/Panel';
 
 interface PanelType {
@@ -28,8 +30,8 @@ const PanelsInfo: {
 } = {
     games: Games,
     lings: Lings,
-    /*opts: ,
-    info: */
+    opts: Options,
+    info: Info,
 }
 
 type PanelEntry = {
