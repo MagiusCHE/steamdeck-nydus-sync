@@ -7,7 +7,6 @@ const { log, error } = Logger.create('App')
 import React, { useEffect, useState } from 'react';
 import './Application.scss';
 
-
 const Application: React.FC = () => {
   const [darkTheme, setDarkTheme] = useState(true);
   /**
