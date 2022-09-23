@@ -64,6 +64,27 @@
   --app-color: #999999;
 }
 
+body.dark-mode {
+  a {
+    color: #ec6e6e;
+
+    &:hover {
+      color: #c85b5b;
+    }
+  }
+
+  .form-switch .form-check-input {
+    background-color: var(--scroll-thumb-bgcolor);
+    //
+
+    &:checked {
+      background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23a363b2%27/%3e%3c/svg%3e");
+      
+    }
+  }
+//a363b2
+}
+
 /*
  *=========================================================================
  * ERWT Light Theme
@@ -119,12 +140,16 @@ body:not(.dark-mode) {
     }
   }
 
+
 }
 
 :root {
   //--bs-body-font-family: var(--app-font-family);
   --bs-body-font-size: var(--app-font-size);
 }
+
 $font-family-base: var(--app-font-family);
+
+
 
 @import "~bootstrap/scss/bootstrap";

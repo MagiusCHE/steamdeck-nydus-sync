@@ -25,11 +25,11 @@ class Info extends Panel {
             <div className='panel' ref={this.ref_panel} key={'panel_' + this.index}>
                 <div className='header'>
                     <div className='main-heading'>
-                        <h1 className='themed'>Contributors</h1>
+                        <h1 className='themed'>Contributors / Packages</h1>
                     </div>
                     <div className='main-teaser'>
                         <ul>
-                            <li>Guasam with <a rel="noreferrer" target="_blank" href="https://github.com/codesbiome/electron-react-webpack-typescript-2022" onClick={(e) => {
+                            <li><b>Guasam</b> with <a rel="noreferrer" target="_blank" href="https://github.com/codesbiome/electron-react-webpack-typescript-2022" onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 mainAPI.open_external((e.target as HTMLAnchorElement).href)
