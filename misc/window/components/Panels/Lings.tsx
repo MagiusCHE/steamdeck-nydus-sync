@@ -25,18 +25,21 @@ class Lings extends Panel {
             <div className='panel' ref={this.ref_panel} key={'panel_' + this.index}>
                 <div className='header'>
                     <div className='main-heading'>
-                        <h1 className='themed'>Nydus: {this.log_name}</h1>
+                        <h1 className='themed'>Linked Lings</h1>
                     </div>
                     <div className='main-teaser'>
-                        <div>
-                            If you think the project is useful enough, just spread the word around!
-                        </div>
+                        List of linked Nydus Lings.
+                    </div>
+                    <div className='main-heading'>
+                        <h3 className='themed'>Discover Lings</h3>
+                    </div>
+                    <div className='main-teaser secondary'>
+                        Use this function to scan local network and find Active Lings!
                     </div>
                 </div>
 
                 <div className='footer'>
                     <div className='center'>
-                        TODO
                     </div>
                 </div>
             </div>
