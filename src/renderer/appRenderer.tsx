@@ -5,7 +5,8 @@ import Application from '@components/Application';
 import mainAPI from '@misc/window/mainAPIContextApi';
 
 // Say something
-mainAPI.log('Renderer','execution started');
+console.log(mainAPI)
+mainAPI.log_raw('Renderer', 'execution started');
 
 // Application to Render
 const app = (

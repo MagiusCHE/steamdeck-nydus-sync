@@ -10,10 +10,10 @@ class Logger {
 
         return {
             log: (format: string, ...args: unknown[]) => {
-                mainAPI.log(name, format, ...args)
+                mainAPI.log_raw(name, format, ...args)
             },
             error: (format: string, ...args: unknown[]) => {
-                mainAPI.error(name, format, ...args)
+                mainAPI.error_raw(name, format, ...args)
             }
         }
     }

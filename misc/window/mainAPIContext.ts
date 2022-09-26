@@ -14,6 +14,8 @@ import debug from 'debug';
 
 import { ipcRenderer, shell } from 'electron';
 import React from 'react';
+import { IMainAPIIpc } from './mainAPIIPC';
+
 
 type AllowedArgumentTypes = (object | string | number)[]
 
@@ -30,8 +32,9 @@ const activeDebugs: {
   [keys: string]: debug.Debugger
 } = {}
 
-const MainAPIContext = {
-  log(sender: string, format: string, ...args: unknown[]) {
+class MainAPIContextApi implements IMainAPIIpc {
+  public created = "testme"
+  public log_raw = async (sender: string, format: string, ...args: unknown[]) => {
 
     const key = "nydus:" + sender
     const internal_key = 'I:' + key
@@ -45,8 +48,8 @@ const MainAPIContext = {
       args: assemble_args(sender, format, ...args)
     }
     return ipcRenderer.send("api", ipcargs);
-  },
-  error(sender: string, format: string | Error, ...args: unknown[]) {
+  }
+  public error_raw = async (sender: string, format: string | Error, ...args: unknown[]) => {
     const key = "nydus:" + sender
     const internal_key = 'E:' + key
     if (!activeDebugs[internal_key]) {
@@ -62,19 +65,23 @@ const MainAPIContext = {
       args: assemble_args(sender, format, ...args)
     }
     return ipcRenderer.send("api", ipcargs);
-  },
-  open_external(url: string) {
+  }
+  public open_external = (url: string) => {
     shell.openExternal(url)
-  },
-  async test() {
+  }
+  /*public test = async () => {
     const ipcargs: MainAPIArguments = {
       method: "test",
       args: [{ a: 2 }, 43]
     }
     return ipcRenderer.invoke("api", ipcargs);
-  },
-};
-
-export type MainAPIContextApi = typeof MainAPIContext;
-
-export default MainAPIContext;
+  }*/
+  public choose_path = async (title: string, startig_path?: string) => {
+    const ipcargs: MainAPIArguments = {
+      method: "choose_path",
+      args: [title, startig_path]
+    }
+    return ipcRenderer.invoke("api", ipcargs);
+  }
+}
+export { MainAPIContextApi }

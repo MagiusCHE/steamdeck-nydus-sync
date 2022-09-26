@@ -11,8 +11,11 @@
 
 import mainAPI from '../../mainAPIContextApi';
 
-import React, { createRef } from 'react';
+import React, { createRef, MouseEvent } from 'react';
 import Panel, { PanelProps } from './Panel';
+
+
+
 
 class Games extends Panel {
     constructor() {
@@ -20,43 +23,29 @@ class Games extends Panel {
     }
 
     public override get_element(props: PanelProps) {
+        const addNewGame = async (e: MouseEvent) => {
+            try {
+                const path = await mainAPI.choose_path('Select root path of the game')
+                this.log("Received %o", path)
+            } catch (err) {
+                this.error("Received error", err)
+            }
+        }
         return (
             <div className='panel' ref={this.ref_panel} key={'panel_' + this.index}>
                 <div className='header'>
                     <div className='main-heading'>
-                        <h1 className='themed'>Nydus: Games </h1>
+                        <h1 className='themed'>Local Games</h1>
                     </div>
                     <div className='main-teaser'>
-                        <div>
-                            Robust boilerplate for Desktop Applications with Electron and
-                            ReactJS.
-                            <br />
-                            Hot Reloading is used in this project for fast development
-                            experience.
-                            <br />
-                            If you think the project is useful enough, just spread the word around!
-                        </div>
+                        ⚠️ &nbsp; No game in list. Add one using button below.
                     </div>
                     <div className='center'>
                         <button
-                            onClick={async () => {
-                                try {
-                                    this.log("Send %o", 'test')
-                                    const ret = await mainAPI.test()
-                                    this.log("Received %o", ret)
-                                } catch (err) {
-                                    this.error("Received error", err)
-                                }
-                            }}
+                            onClick={addNewGame}
                         >
-
+                            ➕ Add new Game
                         </button>
-                    </div>
-                </div>
-
-                <div className='footer'>
-                    <div className='center'>
-                        TODO
                     </div>
                 </div>
             </div>
