@@ -43,7 +43,9 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@reforged/maker-appimage": "^1.2.1",
     "@types/bootstrap": "^5.2.4",
+    "@types/dateformat": "^5.0.0",
     "@types/debug": "^4.1.7",
+    "@types/mkdirp": "^1.0.2",
     "@types/node": "^18.6.1",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
@@ -76,9 +78,11 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "dateformat": "^5.0.3",
     "debug": "^4.3.4",
     "electron-squirrel-startup": "^1.0.0",
     "material-ui-popup-state": "^4.0.2",
+    "mkdirp": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

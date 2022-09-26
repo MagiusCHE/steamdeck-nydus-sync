@@ -1,10 +1,9 @@
 /* eslint-disable prefer-spread */
 
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import Configuration from '../server/config';
 import { Logger, Loggable } from '../server/logger';
 import { MainAPIArguments } from './mainAPIContext';
-
-const production = process.env.NODE_ENV == 'production'
 
 interface IMainAPIIpc {
     choose_path(title: string, startig_path?: string): Promise<string>
@@ -14,15 +13,18 @@ interface IMainAPIIpc {
 }
 
 class MainAPIIpc extends Loggable implements IMainAPIIpc {
+    config: Configuration
     constructor(private readonly mainWindow: BrowserWindow) {
         super('Ipc')
+        this.config = new Configuration();
+        this.config.init()
         const handler = async (event: Electron.IpcMainInvokeEvent, args: MainAPIArguments) => {
             switch (args.method) {
                 /*case "test":
                     return this.test.apply(this, args.args)*/
-                case "log":
+                case "log_raw":
                     return this.log_raw(args.args[0] as string, args.args[1] as string, ...args.args.slice(2))
-                case "error":
+                case "error_raw":
                     return this.error_raw(args.args[0] as string, args.args[1] as string, ...args.args.slice(2))
                 case "choose_path":
                     return this.choose_path(args.args[0] as string, args.args[1] as string)
@@ -32,6 +34,10 @@ class MainAPIIpc extends Loggable implements IMainAPIIpc {
         };
         ipcMain.handle('api', handler);
         ipcMain.on('api', handler);
+
+        app.once('will-quit', () => {
+            this.on_app_exit()
+        })
     }
     public async log_raw(sender: string, format: string, ...args: unknown[]) {
         Logger.log(sender, format, ...args)
@@ -57,6 +63,11 @@ class MainAPIIpc extends Loggable implements IMainAPIIpc {
             return undefined
         }
         return ret.filePaths[0]
+    }
+
+    public on_app_exit() {
+        this.log("Application quit invoked.")
+        this.config.dispose()
     }
 }
 

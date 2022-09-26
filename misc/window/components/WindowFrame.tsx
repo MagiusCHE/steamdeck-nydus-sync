@@ -48,7 +48,6 @@ const WindowFrame: React.FC<Props> = (props) => {
       parentElement.style.borderColor = props.borderColor;
     }
 
-    log("Select tab invoked on useEffect")
     selectTab('games')
 
   }, []);

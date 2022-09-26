@@ -5,9 +5,9 @@ import Application from '@components/Application';
 import mainAPI from '@misc/window/mainAPIContextApi';
 
 // Say something
-console.log(mainAPI)
+/*console.log(mainAPI)
 mainAPI.log_raw('Renderer', 'execution started');
-
+*/
 // Application to Render
 const app = (
   <WindowFrame title='Nydus' platform='windows'>

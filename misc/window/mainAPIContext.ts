@@ -44,7 +44,7 @@ class MainAPIContextApi implements IMainAPIIpc {
     }
     activeDebugs[internal_key](format, ...args)
     const ipcargs: MainAPIArguments = {
-      method: "log",
+      method: "log_raw",
       args: assemble_args(sender, format, ...args)
     }
     return ipcRenderer.send("api", ipcargs);
@@ -61,7 +61,7 @@ class MainAPIContextApi implements IMainAPIIpc {
     }
     activeDebugs[internal_key](format, ...args)
     const ipcargs: MainAPIArguments = {
-      method: "error",
+      method: "error_raw",
       args: assemble_args(sender, format, ...args)
     }
     return ipcRenderer.send("api", ipcargs);
